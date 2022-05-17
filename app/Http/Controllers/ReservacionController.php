@@ -2,11 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\Mail\ReporteReservaciones;
 use App\Models\Habitacion;
 use App\Models\Reservacion;
 use App\Models\Servicio;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Mail;
 
 class ReservacionController extends Controller
 {
@@ -51,8 +53,8 @@ class ReservacionController extends Controller
         $habitacion = Habitacion::find($request->habitacion_id);
         $request->merge(['user_id'=>Auth::id(), 'costo'=>$habitacion->costo * $request->dias]);
         $reservacion = Reservacion::create($request->all());
-
         $reservacion->servicios()->attach($request->servicio_id);
+        Mail::to(Auth::user()->email)->send(new ReporteReservaciones($reservacion));
 
         return redirect('/reservacion');
     }
