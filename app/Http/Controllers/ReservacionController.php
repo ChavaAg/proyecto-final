@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Habitacion;
 use App\Models\Reservacion;
+use App\Models\Servicio;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -29,7 +30,8 @@ class ReservacionController extends Controller
     public function create()
     {
         $habitaciones = Habitacion::all();
-        return view('reservacion/formCreateReservacion', compact('habitaciones'));
+        $servicios = Servicio::all();
+        return view('reservacion/formCreateReservacion', compact('habitaciones','servicios'));
     }
 
     /**
@@ -40,10 +42,17 @@ class ReservacionController extends Controller
      */
     public function store(Request $request)
     {
-
+        $request->validate([
+            'dias'=>'required|min:1|max:50',
+            'inicia'=>'required',
+            'habitacion_id'=>'required',
+            'servicio_id'=>'required',
+        ]);
         $habitacion = Habitacion::find($request->habitacion_id);
         $request->merge(['user_id'=>Auth::id(), 'costo'=>$habitacion->costo * $request->dias]);
         $reservacion = Reservacion::create($request->all());
+
+        $reservacion->servicios()->attach($request->servicio_id);
 
         return redirect('/reservacion');
     }
@@ -68,7 +77,8 @@ class ReservacionController extends Controller
     public function edit(Reservacion $reservacion)
     {
         $habitaciones = Habitacion::all();
-        return view('reservacion/formUpdateReservacion', compact('reservacion','habitaciones'));
+        $servicios = Servicio::all();
+        return view('reservacion/formUpdateReservacion', compact('reservacion','habitaciones','servicios'));
     }
 
     /**
@@ -84,9 +94,12 @@ class ReservacionController extends Controller
             'dias'=>'required|min:1|max:50',
             'inicia'=>'required',
             'habitacion_id'=>'required',
+            'servicio_id'=>'required',
         ]);
 
-        Reservacion::where('id',$reservacion->id)->update($request->except(['_token', '_method']));
+        Reservacion::where('id',$reservacion->id)->update($request->except(['_token', '_method', 'servicio_id']));
+
+        $reservacion->servicios()->sync($request->servicio_id);
 
          //return redirect('/reservacion/'. $reservacion->id);
          return redirect('/reservacion');

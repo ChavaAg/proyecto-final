@@ -16,5 +16,9 @@ class Reservacion extends Model
     public function habitacion(){
         return $this->belongsTo(Habitacion::class);
     }
+
+    public function servicios(){
+        return $this->belongsToMany(Servicio::class);
+    }
     protected $fillable = ['user_id', 'habitacion_id', 'costo', 'dias', 'inicia'];
 }

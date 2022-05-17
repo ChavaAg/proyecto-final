@@ -38,6 +38,11 @@
                 <option value="{{$habitacion->id}}">{{$habitacion->tipo}}</option>
             @endforeach
         </select><br>
+        <select name="servicio_id[]" multiple>
+            @foreach ($servicios as $servicio)
+                <option value="{{$servicio->id}}">{{$servicio->servicio}}</option>
+            @endforeach
+        </select><br>
         <input type="submit" value="Enviar">
 
 

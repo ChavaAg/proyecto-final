@@ -36,7 +36,13 @@
         <label for="habitacion_id">Tipo de habitacion</label>
         <select name="habitacion_id" >
             @foreach ($habitaciones as $habitacion)
-                <option value="{{$habitacion->id}}" {{array_search($habitacion->id, $reservacion->habitacion->pluck('id')->toArray()) != false ? ' selected' : ''}}>{{$habitacion->tipo}}</option>
+                <option value="{{$habitacion->id}}" {{ $habitacion->id == $reservacion->habitacion->id ? ' selected' : ''}}>{{$habitacion->tipo}}</option>
+            @endforeach
+        </select><br>
+        <label for="servicio_id">Servicios</label><br>
+        <select name="servicio_id[]" multiple>
+            @foreach ($servicios as $servicio)
+                <option value="{{$servicio->id}}" {{array_search($servicio->id, $reservacion->servicios->pluck('id')->toArray()) != false ? ' selected' : ''}}>{{$servicio->servicio}}</option>
             @endforeach
         </select><br>
         <input type="submit" value="Enviar">

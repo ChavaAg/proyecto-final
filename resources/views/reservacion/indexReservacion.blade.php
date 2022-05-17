@@ -46,6 +46,7 @@
             <th>ID</th>
             <th>Usuario</th>
             <th>Habitacion</th>
+            <th>Servicios</th>
             <th>Costo</th>
             <th>Acciones</th>
         </tr>
@@ -55,6 +56,11 @@
                 <td>{{$reservacion->id}}</td>
                 <td>{{$reservacion->user->name}}</td>
                 <td>{{$reservacion->habitacion->tipo}}</td>
+                <td>
+                    @foreach ($reservacion->servicios as $servicio )
+                        {{$servicio->servicio}} <br>
+                    @endforeach
+                </td>
                 <td>{{$reservacion->inicia}}</td>
                 <td>
                     <a href="reservacion/{{$reservacion->id}}">Detalles </a>
