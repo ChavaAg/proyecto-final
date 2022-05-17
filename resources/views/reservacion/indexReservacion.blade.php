@@ -61,7 +61,7 @@
                         {{$servicio->servicio}} <br>
                     @endforeach
                 </td>
-                <td>{{$reservacion->inicia}}</td>
+                <td>{{$reservacion->costo}}</td>
                 <td>
                     <a href="reservacion/{{$reservacion->id}}">Detalles </a>
                     <br>

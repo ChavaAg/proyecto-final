@@ -17,7 +17,7 @@ class ReservacionController extends Controller
      */
     public function index()
     {
-        $reservaciones = Reservacion::with('habitacion')->with('user')->get();
+        $reservaciones = Reservacion::with('habitacion')->with('user')->with('servicios')->get();
         return view('reservacion/indexReservacion', compact('reservaciones'));
 
     }

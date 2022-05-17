@@ -42,7 +42,7 @@
         <label for="servicio_id">Servicios</label><br>
         <select name="servicio_id[]" multiple>
             @foreach ($servicios as $servicio)
-                <option value="{{$servicio->id}}" {{array_search($servicio->id, $reservacion->servicios->pluck('id')->toArray()) != false ? ' selected' : ''}}>{{$servicio->servicio}}</option>
+                <option value="{{$servicio->id}}" {{array_search($servicio->id, $reservacion->servicios->pluck('id')->toArray()) !== false ? ' selected' : ''}}>{{$servicio->servicio}}</option>
             @endforeach
         </select><br>
         <input type="submit" value="Enviar">

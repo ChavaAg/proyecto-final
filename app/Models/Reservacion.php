@@ -21,4 +21,5 @@ class Reservacion extends Model
         return $this->belongsToMany(Servicio::class);
     }
     protected $fillable = ['user_id', 'habitacion_id', 'costo', 'dias', 'inicia'];
+
 }
