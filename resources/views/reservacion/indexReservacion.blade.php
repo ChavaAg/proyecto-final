@@ -67,12 +67,13 @@
                     <a href="reservacion/{{$reservacion->id}}">Detalles </a>
                     <br>
                     <a href="reservacion/{{$reservacion->id}}/edit">EDIT</a>
-                    @endcan
+
                     <form action="/reservacion/{{$reservacion->id}}" method="post">
                         @csrf
                         @method('DELETE')
                         <input type="submit" value="DELETE" class="botton">
                     </form>
+                    @endcan
                 </td>
             </tr>
         @endforeach

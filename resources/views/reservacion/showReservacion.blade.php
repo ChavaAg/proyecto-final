@@ -43,6 +43,7 @@
             <th>Usuario</th>
             <th>Correo</th>
             <th>Habitacion</th>
+            <th>Fecha</th>
             <th>Dias</th>
             <th>Costo</th>
         </tr>
@@ -51,9 +52,23 @@
                 <td>{{$reservacion->user->name}}</td>
                 <td>{{$reservacion->user->email}}</td>
                 <td>{{$reservacion->habitacion->tipo}}</td>
+                <td>{{$reservacion->inicia}}</td>
                 <td>{{$reservacion->dias}}</td>
                 <td>{{$reservacion->costo}}</td>
             </tr>
-    </table>
+    </table><br><br>
+
+    <form action="archivo" method="POST" enctype="multipart/form-data">
+        @csrf
+        <input type="hidden" name="reservacion_id" value="{{$reservacion->id}}">
+        <input type="file" name="archivos[]" multiple accept="image/*"><br>
+        <input type="submit" value="Enviar" class="botton">
+    </form>
+
+    <ul>
+        @foreach ($reservacion->archivos as $archivo)
+            <li>{{$archivo->nombre}}</li>
+        @endforeach
+    </ul>
 </body>
 </html>

@@ -60,11 +60,7 @@ class User extends Authenticatable implements MustVerifyEmail
         'profile_photo_url',
     ];
 
-    public function eventos(){
-        return $this->hasMany(Reservacion::class);
-    }
-
-    public function name():Attribute{
+        public function name():Attribute{
         return Attribute::make(
             set:fn($value) => ucfirst(strtolower($value))
         );

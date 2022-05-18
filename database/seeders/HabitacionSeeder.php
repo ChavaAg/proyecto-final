@@ -18,21 +18,15 @@ class HabitacionSeeder extends Seeder
         DB::table('habitacions')->insert([
             'tipo' => 'Sencilla',
             'costo' => '500',
-            'created_at' => now(),
-            'updated_at' => now(),
         ]);
 
         DB::table('habitacions')->insert([
             'tipo' => 'Ejecutiva',
             'costo' => '1000',
-            'created_at' => now(),
-            'updated_at' => now(),
         ]);
         DB::table('habitacions')->insert([
             'tipo' => 'Lujo',
             'costo' => '2500',
-            'created_at' => now(),
-            'updated_at' => now(),
         ]);
     }
 }

@@ -13,10 +13,8 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('habitacions', function (Blueprint $table) {
-            $table->id();
-            $table->string('tipo',30);
-            $table->integer('costo');
+        Schema::table('reservacions', function (Blueprint $table) {
+            $table->softDeletes();
         });
     }
 
@@ -27,6 +25,8 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('habitacions');
+        Schema::table('reservacions', function (Blueprint $table) {
+            $table->dropSoftDeletes();
+        });
     }
 };

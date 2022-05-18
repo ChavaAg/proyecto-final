@@ -1,8 +1,7 @@
 <?php
 
-use App\Http\Controllers\EventoController;
+use App\Http\Controllers\ArchivoController;
 use App\Http\Controllers\ReservacionController;
-use App\Models\Evento;
 use App\Models\Reservacion;
 use Illuminate\Support\Facades\Route;
 
@@ -26,6 +25,7 @@ Route::middleware([
     })->name('dashboard');
 });
 
+Route::post('archivo',[ArchivoController::class, 'store']);
 Route::resource('/reservacion',ReservacionController::class);
 
 Route::get('/', function () {

@@ -12,6 +12,11 @@ use Illuminate\Support\Facades\Mail;
 
 class ReservacionController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('verified')->except('index');
+    }
+
     /**
      * Display a listing of the resource.
      *

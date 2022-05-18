@@ -13,13 +13,12 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('eventos', function (Blueprint $table) {
+        Schema::create('archivos', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('user_id')->constrained()->onDelete('cascade');
-            $table->string('nombre', 50);
-            $table->string('lugar', 50);
-            $table->string('grupo', 50);
-            $table->text('descripcion');
+            $table->foreignId('reservacion_id')->references('id')->on('reservacions');
+            $table->string('nombre');
+            $table->string('nombre_hash');
+            $table->string('mime');
             $table->timestamps();
         });
     }
@@ -31,6 +30,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('eventos');
+        Schema::dropIfExists('archivos');
     }
 };
