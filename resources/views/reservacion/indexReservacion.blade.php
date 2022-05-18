@@ -63,9 +63,11 @@
                 </td>
                 <td>{{$reservacion->costo}}</td>
                 <td>
+                    @can('view', $reservacion)
                     <a href="reservacion/{{$reservacion->id}}">Detalles </a>
                     <br>
                     <a href="reservacion/{{$reservacion->id}}/edit">EDIT</a>
+                    @endcan
                     <form action="/reservacion/{{$reservacion->id}}" method="post">
                         @csrf
                         @method('DELETE')

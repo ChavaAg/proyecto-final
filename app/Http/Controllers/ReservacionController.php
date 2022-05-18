@@ -67,6 +67,7 @@ class ReservacionController extends Controller
      */
     public function show(Reservacion $reservacion)
     {
+        $this->authorize('view', $reservacion);
         return view('reservacion/showReservacion', compact('reservacion'));
     }
 
@@ -78,6 +79,7 @@ class ReservacionController extends Controller
      */
     public function edit(Reservacion $reservacion)
     {
+        $this->authorize('update', $reservacion);
         $habitaciones = Habitacion::all();
         $servicios = Servicio::all();
         return view('reservacion/formUpdateReservacion', compact('reservacion','habitaciones','servicios'));
@@ -92,6 +94,8 @@ class ReservacionController extends Controller
      */
     public function update(Request $request, Reservacion $reservacion)
     {
+        $this->authorize('update', $reservacion);
+
         $request->validate([
             'dias'=>'required|min:1|max:50',
             'inicia'=>'required',
@@ -115,6 +119,7 @@ class ReservacionController extends Controller
      */
     public function destroy(Reservacion $reservacion)
     {
+        $this->authorize('delete', $reservacion);
         $reservacion->delete();
         return redirect('/reservacion');
     }
