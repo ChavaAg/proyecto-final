@@ -1,0 +1,116 @@
+body{
+    background: #BDB7FA;
+    width: auto;
+}
+
+.linea{
+  
+    background: #03101E;
+    font-size: 120%;
+    position: relative;
+    text-align: center;
+    border-bottom: 1px solid #fdfdfd;
+}
+
+h1{
+    color: white;
+    
+    font-size: 150%;
+    font-family: 'Times New Roman', Times, serif;
+    display: inline-block;
+}
+
+.slider {
+	width: 100%;
+	margin: auto;
+	overflow: hidden;
+}
+
+.slider ul {
+	display: flex;
+	padding: 0;
+	width: 400%;
+	
+	animation: cambio 20s infinite alternate linear;
+}
+
+.slider li {
+	width: 100%;
+	list-style: none;
+}
+
+
+.slider img {
+	width: 100%;
+    height: 600px;
+    object-fit: cover;
+}
+
+@keyframes cambio {
+	0% {margin-left: 0;}
+	20% {margin-left: 0;}
+	
+	25% {margin-left: -100%;}
+	45% {margin-left: -100%;}
+	
+	50% {margin-left: -200%;}
+	70% {margin-left: -200%;}
+	
+	75% {margin-left: -300%;}
+	100% {margin-left: -300%;}
+}
+
+.logo{
+    position: absolute;
+    width: 200px;
+    margin-left: 200px; 
+
+}
+.lineaA{
+    background: #03101E;
+    font-size: 100%;
+    text-align: left;
+    
+    color: white;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    text-align: left;
+}
+
+.from{
+   border-top: 5px solid #03101E;
+   border-bottom: 5px solid #03101E;
+    font-size: 120%;
+    text-align: center;
+    position: relative;
+}
+
+.d{
+    
+    display: inline-block;
+    color: black;
+    font-size: 125%;
+    font-family: 'Times New Roman', Times, serif;
+    border: 2px solid #03101E;
+    text-align: center;
+}
+
+.galeria{
+    
+    margin: auto;
+    box-shadow: 0 4px 8px #03101E, 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    width: 350px;
+}
+
+.galeria img{
+    width: 100%;
+    height: auto;
+}
+
+.galeria:hover{
+    border: 1px solid #03101E;
+    transform: rotate(-3deg);
+}
+
+.pie{
+    text-align: center;
+}

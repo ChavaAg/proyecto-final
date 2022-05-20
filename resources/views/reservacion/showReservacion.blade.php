@@ -4,15 +4,19 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Detalles</title>
+    <title>Detalles de la reservacion</title>
+    <link rel="stylesheet" href="{{ asset('css/inicios.css')}}">
 </head>
 <body>
+    <div class = "linea"> 
+        <h1>
+            WELCOME UCHIHA RESORTS
+        </h1>
+    </div>
     @if (Route::has('login'))
-                <div class="menu" >
-                    <a href="resercacion/create" class="d">CREATE NEW EVENT</a>
-                    <br>
+                <div class="menu">
                     @auth
-                        <a href="{{ url('reservacion') }}" class="d">HOME</a>
+                        <a href="{{ url('reservacion') }}" >HOME</a>
                         <br>
     @else
                         <a href="{{ route('login') }}" class="d">LOG IN</a>
@@ -25,19 +29,13 @@
     @endif
     <form method="POST" action="{{ route('logout') }}">
         @csrf
-        <br>
-        <a href="{{ route('logout') }}"
-                 onclick="event.preventDefault();
-                        this.closest('form').submit();">
-            <p class="d">RETURN MAIN</p>
-        </a>
     </form>
 
-
-    <h1>Reservacion</h1>
-    <h3>Hecha por: {{$reservacion->user->name}}</h3>
-
-    <table BORDER>
+    <div class="table">
+    <p>Reservacion</p>
+    <p>Hecha por: {{$reservacion->user->name}}</p>
+    <div class="b"></div>
+    <table>
         <tr>
             <th>ID</th>
             <th>Usuario</th>
@@ -56,15 +54,9 @@
                 <td>{{$reservacion->dias}}</td>
                 <td>{{$reservacion->costo}}</td>
             </tr>
-    </table><br><br>
-
-    <form action="archivo" method="POST" enctype="multipart/form-data">
-        @csrf
-        <input type="hidden" name="reservacion_id" value="{{$reservacion->id}}">
-        <input type="file" name="archivos[]" multiple accept="image/*"><br>
-        <input type="submit" value="Enviar" class="botton">
-    </form>
-
+    </table>
+    </div>
+    <br><br>
     <ul>
         @foreach ($reservacion->archivos as $archivo)
             <li>{{$archivo->nombre}}</li>
